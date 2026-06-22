@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Olufemi Oduba</title>
+  <meta name="description" content="Projects by Olufemi Oduba — mobile apps, full-stack platforms, and analytics work.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── PROJECTS-SPECIFIC ── */
+    .proj-hero {
+      padding: clamp(48px, 8vh, 80px) 0 clamp(36px, 6vh, 60px);
+    }
+    .proj-hero h1 {
+      font-family: var(--font-d);
+      font-size: clamp(2.6rem, 8vw, 5.5rem);
+      font-weight: 700; letter-spacing: -.04em; line-height: .95;
+      margin-bottom: 0;
+    }
+
+    /* category split */
+    .cat-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      margin: clamp(40px, 6vh, 64px) 0;
+    }
+    .cat-card {
+      background: var(--bg-2); padding: 36px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: background var(--ease);
+    }
+    .cat-card:hover { background: var(--bg-3); }
+    .cat-card h3 {
+      font-family: var(--font-d);
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 700; letter-spacing: -.02em;
+    }
+    .cat-card p { font-size: .88rem; color: var(--text-2); font-style: italic; }
+    .cat-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .84rem; font-weight: 600;
+      color: var(--text);
+      border: 1.5px solid var(--border-2);
+      border-radius: 8px; padding: 10px 16px;
+      width: fit-content; margin-top: 8px;
+      transition: all var(--ease);
+    }
+    .cat-link:hover { border-color: var(--text); transform: translateY(-2px); }
+    .cat-link svg { width: 16px; height: 16px; transition: transform var(--ease); }
+    .cat-link:hover svg { transform: translateY(2px); }
+
+    /* section label */
+    .proj-label {
+      font-family: var(--font-m); font-size: .7rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-3); padding: clamp(32px, 5vh, 52px) 0 28px;
+      display: block;
+    }
+
+    /* project list */
+    .proj-list { display: flex; flex-direction: column; gap: 0; }
+    .proj-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 28px; align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background var(--ease);
+    }
+    .proj-item:last-child { border-bottom: none; }
+    .proj-item:hover { background: var(--bg-2); margin: 0 -20px; padding: 28px 20px; border-radius: 12px; }
+
+    .proj-num {
+      font-family: var(--font-m); font-size: 1.1rem;
+      font-weight: 500; color: var(--text-3);
+      padding-top: 3px;
+    }
+    .proj-main {}
+    .proj-top {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 16px;
+      margin-bottom: 10px;
+    }
+    .proj-title {
+      font-family: var(--font-d);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 600; letter-spacing: -.01em;
+    }
+    .proj-arrow {
+      color: var(--text-3); font-size: 1.1rem;
+      transition: all var(--ease); flex-shrink: 0;
+    }
+    .proj-item:hover .proj-arrow { color: var(--text); transform: translate(3px, -3px); }
+    .proj-desc { font-size: .88rem; color: var(--text-2); line-height: 1.65; margin-bottom: 14px; }
+
+    /* image */
+    .proj-img-wrap {
+      margin-top: 16px; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); aspect-ratio: 16/9;
+      background: var(--bg-3);
+    }
+    .proj-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .proj-item:hover .proj-img-wrap img { transform: scale(1.02); }
+
+    @media (max-width: 600px) {
+      .cat-split { grid-template-columns: 1fr; }
+      .proj-item { grid-template-columns: 40px 1fr; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-mark" href="index.html">
+      <span class="mark-box">FO</span>
+      Olufemi Oduba
+    </a>
+    <div class="nav-center">
+      <a href="about.html" class="nav-link">About</a>
+      <a href="projects.html" class="nav-link active">Projects</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-icon" href="https://github.com/femioduba1" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.1 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55v-2.16c-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.24 2.75.12 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.2.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+      </a>
+      <a class="nav-icon" href="https://www.linkedin.com/in/femioduba" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.5c0-1.55-.03-3.55-2.16-3.55-2.16 0-2.5 1.69-2.5 3.43V23h-4V8z"/></svg>
+      </a>
+      <a class="nav-icon" href="mailto:femioduba@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+      <button id="theme-btn" class="nav-icon" aria-label="Toggle theme">🌙</button>
+      <button class="ham" id="ham" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div id="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="mailto:femioduba@gmail.com">Email</a>
+</div>
+
+<!-- MAIN -->
+<main class="page">
+  <div class="inner">
+
+    <!-- heading -->
+    <section class="proj-hero">
+      <span class="eyebrow reveal">Selected Work</span>
+      <h1 class="reveal d1">MY WORK</h1>
+    </section>
+
+    <hr class="rule">
+
+    <!-- category split -->
+    <div class="cat-split reveal">
+      <div class="cat-card">
+        <h3>I Build Stuff…</h3>
+        <p>Mobile apps, full-stack platforms, algorithms</p>
+        <a class="cat-link" href="#build">
+          See my work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+      <div class="cat-card">
+        <h3>I Analyze Stuff…</h3>
+        <p>Data, dashboards, consulting deliverables</p>
+        <a class="cat-link" href="#analyze">
+          See my work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- BUILD projects -->
+    <span class="proj-label reveal" id="build">Build — Mobile &amp; Full-Stack</span>
+
+    <div class="proj-list">
+
+      <div class="proj-item reveal" onclick="window.open('https://github.com/femioduba1/fitness-quest-training-hub','_blank')">
+        <div class="proj-num">01</div>
+        <div class="proj-main">
+          <div class="proj-top">
+            <h3 class="proj-title">Fitness Quest Training Hub</h3>
+            <span class="proj-arrow">↗</span>
+          </div>
+          <p class="proj-desc">
+            A fully offline, AI-personalized fitness app for college students built with Flutter and SQLite.
+            I owned the complete UI/frontend — every screen, navigation structure, and dark/light theme system.
+            Four on-device AI rules (recovery suggestions, overwork warnings, rest-day logic, weekly nudges)
+            run without any external API calls across a 4-layer architecture.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Flutter</span>
+            <span class="tag">Dart</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">fl_chart</span>
+          </div>
+          <div class="proj-img-wrap">
+            <img src="images/project-fitnessquest.jpg" alt="Fitness Quest Training Hub app screenshots">
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-item reveal" onclick="window.open('https://github.com/femioduba1/project02','_blank')">
+        <div class="proj-num">02</div>
+        <div class="proj-main">
+          <div class="proj-top">
+            <h3 class="proj-title">TropicaGuide</h3>
+            <span class="proj-arrow">↗</span>
+          </div>
+          <p class="proj-desc">
+            A real-time collaborative travel planning app built solo with Flutter and Firebase.
+            The centerpiece is a custom itinerary optimizer — a weighted scoring algorithm
+            (40% time, 35% distance, 25% budget) that reorders activities and writes the
+            optimized schedule back to Firestore automatically. Changes sync in under a second
+            with zero manual refreshes.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Flutter</span>
+            <span class="tag">Firebase Auth</span>
+            <span class="tag">Firestore Streams</span>
+            <span class="tag">Provider</span>
+          </div>
+          <div class="proj-img-wrap">
+            <img src="images/project-tropicaguide.jpg" alt="TropicaGuide app screenshots">
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-item reveal" onclick="window.open('https://github.com/femioduba1','_blank')">
+        <div class="proj-num">03</div>
+        <div class="proj-main">
+          <div class="proj-top">
+            <h3 class="proj-title">CourtIQ — Performance Analysis System</h3>
+            <span class="proj-arrow">↗</span>
+          </div>
+          <p class="proj-desc">
+            A full-stack basketball performance analytics platform that transforms raw multi-angle game
+            data into actionable insights for player evaluation and strategy. Built with Angular, Node.js,
+            and PostgreSQL using Agile practices and Git throughout. Designed to give independent analysts
+            the kind of depth that broadcast tools don't offer.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Angular</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ANALYZE projects -->
+    <span class="proj-label reveal" id="analyze">Analyze — Data &amp; Consulting</span>
+
+    <div class="proj-list">
+
+      <div class="proj-item reveal">
+        <div class="proj-num">04</div>
+        <div class="proj-main">
+          <div class="proj-top">
+            <h3 class="proj-title">PwC x Extern — Nonprofit Consulting</h3>
+            <span class="proj-arrow" style="opacity:.3">—</span>
+          </div>
+          <p class="proj-desc">
+            Selected for PwC's competitive AI-Powered Consulting Externship. Applied Python statistical
+            analysis to real nonprofit client data, packaged findings into a written brief, executive-ready
+            visualizations, and a slide deck, then delivered a recorded stakeholder presentation to
+            organizational leadership. Every step matched actual consulting deliverable standards.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Statistical Analysis</span>
+            <span class="tag">Data Visualization</span>
+            <span class="tag">Stakeholder Reporting</span>
+          </div>
+          <div class="proj-img-wrap" style="aspect-ratio:auto;padding:32px;display:flex;align-items:center;justify-content:center">
+            <img src="images/project-pwc.jpg" alt="PwC logo" style="width:200px;height:auto;object-fit:contain">
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-item reveal">
+        <div class="proj-num">05</div>
+        <div class="proj-main">
+          <div class="proj-top">
+            <h3 class="proj-title">Green Light Operations Dashboard &amp; Automation</h3>
+            <span class="proj-arrow" style="opacity:.3">—</span>
+          </div>
+          <p class="proj-desc">
+            Built Python automation tools and Excel dashboards at Green Light Drivers Ed to manage
+            scheduling and student records across 100+ weekly sessions. Improved data accuracy by 25%,
+            built data pipelines for operational reporting, and conducted process walkthroughs with
+            operations staff to identify gaps and translate them into technical solutions.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Process Automation</span>
+            <span class="tag">Excel Dashboards</span>
+            <span class="tag">Data Pipelines</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- connect -->
+    <section style="padding: clamp(48px, 8vh, 80px) 0">
+      <div class="reveal">
+        <span class="eyebrow">Connect</span>
+        <h2 class="sec-title" style="margin-bottom:24px">Let's talk</h2>
+      </div>
+      <div class="pill-row reveal d1">
+        <a class="pill" href="mailto:femioduba@gmail.com">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
+          femioduba@gmail.com
+        </a>
+        <a class="pill" href="https://www.linkedin.com/in/femioduba" target="_blank" rel="noopener noreferrer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.5c0-1.55-.03-3.55-2.16-3.55-2.16 0-2.5 1.69-2.5 3.43V23h-4V8z"/></svg>
+          LinkedIn ↗
+        </a>
+        <a class="pill" href="https://github.com/femioduba1" target="_blank" rel="noopener noreferrer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.1 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55v-2.16c-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.24 2.75.12 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.2.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+          GitHub ↗
+        </a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-left">
+      <a class="nav-mark" href="index.html" style="font-size:.9rem"><span class="mark-box">FO</span></a>
+      <div class="foot-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+      </div>
+    </div>
+    <div class="foot-social">
+      <a href="https://github.com/femioduba1" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/femioduba" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:femioduba@gmail.com">femioduba@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
